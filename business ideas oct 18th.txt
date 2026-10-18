@@ -1,0 +1,142 @@
+Merged, deduped, ordered by 90-day net (rev − cost) descending. Each entry: 30/60/90-day cumulative cost–revenue ranges (planning estimates, not verified), origin LLMs, short summary + action sequence, my feasibility score, and flags for anything you’ve said to drop or that hits your original do-not-repeat list.
+
+**Dropped/flagged before we start:** Event Settlement Desk (you dropped it); PriceLens standalone (you called it weakest — noted, no entry); title/wire-adjacent buyer explanations, Wire Rehearsal, Buyer-Week Briefing, Exception Matrix, Commercial Lease–Title Review, Foreign Buyer Wire-Safe (you said not doing); parser resale/templates (resume booster only — rights-dependent entries flagged ⚠️). Hotshot Courier, TaskRabbit Labor, Gov Surplus Flipping appear in new sources but hit your original do-not-repeat list — flagged ⚠️, your call.
+
+---
+
+**1. Feasibility Brief: Remote TitleOps Employee 30d[$0-$3000] 60d[$0-$8000] 90d[$0-$16250] | Dallas [Perplexity, Gemini]**
+Take your 12 years title/escrow ops as W2/1099 remote for an existing title company — the only allowed use of title experience. Action: update resume/LinkedIn, apply to Copart/First American/Independence remote listings, interview through nationwide contacts, wait for first payroll cycle. Score: 88%.
+
+**2. Feasibility Brief: InventoryOps Coordinator 30d[$150-$3500] 60d[$300-$8000] 90d[$450-$12500] | Dallas [Grok]**
+Salaried logistics/inventory coordination for an infrastructure company (PGTEK Denton listing $65–70k). Action: apply, emphasize accuracy/exception resolution/reporting — don’t claim warehouse experience. Score: 84%.
+
+**3. Feasibility Brief: Car Hotshot Courier 30d[$300-$4000] 60d[$600-$8000] 90d[$900-$12250] | Dallas [Perplexity] ⚠️ DO-NOT-REPEAT (courier)**
+Same-day hotshot in your personal car for labs/dealerships/legal docs. Action: apply to Prestige Couriers DFW (own vehicle, $750–1,500/wk), take 3pm–12am/weekend shifts, track miles. Score: 78% (flag stands).
+
+**4. Feasibility Brief: Traveling Installer 30d[$300-$3500] 60d[$500-$8000] 90d[$700-$12000] | Dallas [Grok]**
+Employer-funded traveling low-voltage/installation work with confirmed overtime and prepaid travel/lodging. Action: contact RolloutTech/VSSI recruiters, confirm overtime + prepaid hotel/airfare in writing, deploy. Score: 82%.
+
+**5. Feasibility Brief: DistributionShift Lead 30d[$200-$3500] 60d[$350-$7500] 90d[$500-$11500] | Dallas [Grok]**
+Warehouse supervisor/fulfillment lead (E.A. Sween Lewisville $57–70k; Sam’s Club Fort Worth $26–29/hr). Action: apply to upper salary range or hourly with confirmed OT. Score: 80%.
+
+**6. Feasibility Brief: AI Workflow Automation 30d[$200-$2500] 60d[$400-$7500] 90d[$600-$11500] | Dallas [Perplexity, Gemini, Grok, Meta]**
+Fixed-price non-PII automation builds (n8n/Make/Zapier) + monthly retainers for SMBs, event planners, PI firms, media desks. Action: build two synthetic demos (vendor COI tracker, event scheduling), pitch $500–$1,500 pilots to warm real estate/event/TV contacts, convert to $500–$1,500/mo retainers. Score: 84%.
+
+**7. Feasibility Brief: Mobile Pre-Purchase Inspection 30d[$600-$2500] 60d[$900-$7000] 90d[$1200-$11250] | Dallas [Perplexity, Gemini]**
+Drive to sellers, 90-min OBD + photo/video inspection report for used-car buyers. Action: buy OBD2 + paint meter ($100–350), set up Google Business Profile, list on FB Marketplace/out-of-state buyer forums, deliver Loom reports with waiver. Score: 80%.
+
+**8. Feasibility Brief: Looker/SQL Dashboards 30d[$100-$2500] 60d[$150-$6000] 90d[$200-$8750] | Dallas [Perplexity, Gemini, Grok]**
+Fix/rebuild broken Looker Studio + SQL dashboards for staffing firms, dealers, real estate teams; data audits and KPI builds. Action: build two demo dashboards on public data, pitch $1,500 teardown to warm ops contacts, scope fixed revisions. Score: 82%.
+
+**9. Feasibility Brief: Contract Week Python/C# 30d[$200-$3000] 60d[$300-$6000] 90d[$400-$8250] | Dallas [Grok, Gemini]**
+One-week fixed-scope Python/C#/.NET builds for one client, remote or on-site, travel paid. Action: niche into Windows desktop/offline tools, bid short-scope fixes, deliver one week, collect, repeat. Score: 78%.
+
+**10. Feasibility Brief: Officiating Stack + Rules Video 30d[$250-$2500] 60d[$400-$5500] 90d[$550-$8000] | Dallas [Perplexity, Gemini, DeepSeek]**
+Stack UIL/TASO varsity + sub-varsity + AAU games (season Nov–Mar) and sell $29–$49 rules-training video to new refs. Action: confirm TASO dues, book games through chapter, publish rules video on Gumroad, shift to spring AAU after March. Score: 80%.
+
+**11. Feasibility Brief: Home Inventory 30d[$200-$2000] 60d[$250-$4500] 90d[$300-$6750] | Dallas [Claude]**
+Room-by-room photos, serials, receipts for insurance/estate proof. Action: three discounted pilots via one insurance agent + one estate planner, deliver digital report, ask for referral. Score: 82%.
+
+**12. Feasibility Brief: PI Records Packet 30d[$200-$2000] 60d[$300-$4500] 90d[$400-$6500] | Dallas [Meta, Grok] ⚠️ Ch.1702 license note**
+Deeds/liens/plat/court pulls + ID verification for Dallas PI firms. Action: confirm Texas Ch.1702 licensing boundary with PI contacts, run two paid packets, use camera brother for photo log. Score: 68% (license check needed).
+
+**13. Feasibility Brief: TaskRabbit Labor-Only 30d[$200-$2000] 60d[$350-$4500] 90d[$500-$6500] | Dallas [Perplexity] ⚠️ DO-NOT-REPEAT (labor-only moving)**
+Load/unload, U-Box, IKEA assembly as Tasker. Action: set $40–$55/hr rate, take weekend jobs, track body/heat limits. Score: 70% (flag stands).
+
+**14. Feasibility Brief: Desktop Rescue Tools 30d[$100-$2000] 60d[$150-$4500] 90d[$200-$6000] | Dallas [Grok, Gemini, Meta]**
+Small Python/.NET utilities for file, media, catalog, equipment-data tasks; no PII. Action: build two synthetic demos (batch media, folder generator), quote fixed builds $650–$950, deliver with handoff video. Score: 76%.
+
+**15. Feasibility Brief: Automation Install 30d[$200-$2000] 60d[$250-$4500] 90d[$300-$6000] | Dallas [Grok]**
+Fixed-fee single-workflow install for small business, scope the result not hours. Action: sell one $1,500–$2,000 build, deliver on their machine, convert to retainer. Score: 74%.
+
+**16. Feasibility Brief: Support QA / Clarity Audit 30d[$75-$1500] 60d[$100-$4000] 90d[$125-$5750] | Dallas [Claude, Meta, Perplexity]**
+Score sampled tickets/chats, deliver one-page coaching report; human-judgment niche above AI QA ($0.27–$0.30/ticket). Action: free 25-ticket sample for one overseas team, convert to $150 audit then $350/mo retainer. Score: 62% (AI price pressure).
+
+**17. Feasibility Brief: Website Finish Line 30d[$150-$2000] 60d[$200-$4000] 90d[$250-$5500] | Dallas [Grok]**
+Repair/finish existing informational sites — mobile, speed, navigation, public pages only. Action: demand sanitized staging copy, quote two scoped projects weekly, exclude checkout/accounts. Score: 74%.
+
+**18. Feasibility Brief: Title Recon Sprint 30d[$200-$1500] 60d[$250-$4000] 90d[$300-$5250] | Dallas [Claude, Meta]**
+Fixed-scope reconciliation for small title agencies — outstanding checks, aged balances, 1099 readiness. Operations only, no examination. Action: paid pilot on one backlog category with one known agency; template pack only after sprint sells. Score: 74%.
+
+**19. Feasibility Brief: Video Production (ScreenTrain/TradeStory) 30d[$150-$1500] 60d[$200-$3500] 90d[$250-$5000] | Dallas [Grok]**
+Short software tutorials or trade-channel editing using your camera. Action: quote $300–$500 bounded tutorial, cap revision rounds, specialize in practical/construction footage. Score: 72%.
+
+**20. Feasibility Brief: Private School Tournament Ops 30d[$200-$1500] 60d[$250-$3500] 90d[$300-$5000] | Dallas [Meta]**
+Scheduling + NFHS modules + Zendesk incident desk + gym setup for private/charter/AAU leagues. Action: pitch one league, use brothers’ office/gear, run one tournament. Score: 68% (seasonality).
+
+**21. Feasibility Brief: StageShift Crew 30d[$200-$1500] 60d[$250-$3500] 90d[$300-$5000] | Dallas [Grok]**
+Event setup/teardown crew as bridge income ($18–$19/hr DFW). Action: apply to Dallas live-event crew listings, use between technical projects. Score: 70%.
+
+**22. Feasibility Brief: Gov Surplus Flipping 30d[$800-$400] 60d[$1800-$2500] 90d[$3000-$7000] | Dallas [Perplexity, Gemini] ⚠️ DO-NOT-REPEAT (estate-sale flips — different but flag)**
+Buy closet-sized GovDeals/PublicSurplus lots (laptops, tools, trailers), test/clean at home, resell local. Action: start with one $200–$300 lot, stay under 5 vehicle flips/yr, track sell-through. Score: 60% (variance high).
+
+**23. Feasibility Brief: LATAM BPO Title Workflow Auditor 30d[$0-$1500] 60d[$0-$3000] 90d[$0-$4000] | Dallas [Meta]**
+Audit ResWare/SoftPro/RamQuest queues at US title firms with Mexico/Colombia ops centers via Looker. Action: pitch one firm, scope fixed audit, deliver dashboard. Score: 70%.
+
+**24. Feasibility Brief: AssemblyDay Service 30d[$300-$800] 60d[$400-$2000] 90d[$500-$4000] | Dallas [Grok]**
+Furniture/basic product assembly at customer site. Action: list on Airtasker/Thumbtack, flat-rate per item, avoid long travel. Score: 64%.
+
+**25. Feasibility Brief: DocSift 30d[$100-$300] 60d[$150-$1200] 90d[$200-$3000] | Dallas [Claude]**
+Email/fax auto-filer + splitter + missing-doc log; sell as workflow bundle, not “AI rename” (Renamer.ai $9.95/mo undercuts). Action: demo 10 messy PDFs, sell $600 setup + $150/mo, restrict to non-PII clients. Score: 52%.
+
+**26. Feasibility Brief: VeriSynth AI Micro-SaaS 30d[$300-$0] 60d[$350-$500] 90d[$400-$3000] | Dallas [Gemini]**
+Package multi-AI consensus engine as B2B tool for newsrooms/PIs/realtors, $49–$199/mo BYO-key. Action: paid beta to warm TV/PI contacts, add SEO channel, pair with cash-flow idea. Score: 55% (distribution risk).
+
+**27. Feasibility Brief: Offshore KYC Chain Pulls 30d[$150-$800] 60d[$150-$2000] 90d[$150-$2750] | Dallas [Meta] ⚠️ GDPR/data-use**
+US county ownership chain to clean report for EU/UK AML firms. Action: confirm GDPR boundary, run two paid reports. Score: 62%.
+
+**28. Feasibility Brief: ReleaseProof Engine 30d[$300-$500] 60d[$350-$1500] 90d[$400-$2750] | Dallas [Grok]**
+Manual release testing first, productize repeated browser checks. Action: sell manual tests to three teams, automate only recurring checks, keep production data out. Score: 58%.
+
+**29. Feasibility Brief: Remote Escrow Talent Placement 30d[$400-$500] 60d[$450-$1500] 90d[$500-$2500] | Dallas [DeepSeek]**
+Placement fee for non-US title firms hiring US-trained remote escrow specialists. Action: post supply via title contacts, screen, charge $500–$1,000 per placement. Score: 60% (cross-border friction).
+
+**30. Feasibility Brief: StatusWindow Portal 30d[$150-$0] 60d[$200-$1000] 90d[$250-$2250] | Dallas [Claude]**
+CSV-driven branded checklist portal (no private data) for title/law/CPA/auto clients. Action: sell after DocSift to existing client, use daily CSV export. Score: 61%.
+
+**31. Feasibility Brief: Club Pay Desk 30d[$80-$800] 60d[$80-$1500] 90d[$80-$2000] | Dallas [Grok] ⚠️ overlaps dropped Event Settlement**
+Reconcile AAU/club fees, mileage, gate totals — no cash held. Action: flat fee per weekend closeout, never hold funds. Score: 58% (off-season thin).
+
+**32. Feasibility Brief: Workflow QA 30d[$100-$800] 60d[$100-$1500] 90d[$100-$2000] | Dallas [Perplexity]**
+Scripted tests of document uploads/permissions/exception handling for property-software vendors. Action: build two synthetic test scripts, pitch two pilots. Score: 66%.
+
+**33. Feasibility Brief: Assignor Conflict Simulator 30d[$100-$300] 60d[$150-$1000] 90d[$200-$2000] | Dallas [Meta]**
+Tkinter scenario engine for de-escalation/dispatch training, not rules. Action: license to one association, iterate. Score: 56%.
+
+**34. Feasibility Brief: Synthetic Test Packs 30d[$100-$400] 60d[$100-$1200] 90d[$100-$1850] | Dallas [Claude, Meta]**
+License fictional transaction datasets + expected-results checklists to property-software vendors (not the parser). Action: build one pack from synthetic data, pitch two vendors. Score: 62%.
+
+**35. Feasibility Brief: Title Ops Templates/SOPs 30d[$300-$300] 60d[$300-$1000] 90d[$300-$2000] | Dallas [DeepSeek, Grok, Meta, Claude] ⚠️ RIGHTS — parser resume-booster only**
+SOPs, taxonomy CSV, macros, curative-aging templates — synthetic/public-only. Action: rebuild on synthetic data, never repackage employer files; sell only if rights clean. Score: 50% (rights unresolved).
+
+**36. Feasibility Brief: Probate Garage Sheet 30d[$60-$600] 60d[$60-$1200] 90d[$60-$1600] | Dallas [Grok]**
+Set visit: obvious mechanical condition + lien/title/payoff questions for probate attorneys. Action: pitch two attorneys, fixed $100–$150 visit, no appraisal/legal opinion. Score: 62%.
+
+**37. Feasibility Brief: Relocation Checklist 30d[$100-$500] 60d[$100-$1000] 90d[$100-$1500] | Dallas [Grok]**
+Non-US employers pay to mark passport-validity/gather lists before embassy visit — no forms/bookings. Action: pitch one employer, keep it checklist-only to avoid expeditor confusion. Score: 60%.
+
+**38. Feasibility Brief: Caption QC 30d[$100-$500] 60d[$100-$1000] 90d[$100-$1500] | Dallas [Perplexity]**
+Correct English captions, speaker labels, timing via TV contacts. Action: two $50–$100 batches, cap correction time. Score: 62%.
+
+**39. Feasibility Brief: County Index Normalizer 30d[$150-$200] 60d[$150-$900] 90d[$150-$1400] | Dallas [Meta]**
+Python tools cleaning grantor/grantee OCR errors for rural abstractors. Action: build one county tool, license at $50–$125. Score: 54%.
+
+**40. Feasibility Brief: Esports Officiating Cert 30d[$400-$200] 60d[$450-$500] 90d[$500-$1750] | Dallas [DeepSeek]**
+Remote certification for emerging-league esports officials. Action: pilot cohort via SEA/LATAM organizers, $150–$300 per cohort. Score: 50%.
+
+**41. Feasibility Brief: Vendor Ledger Checker 30d[$150-$300] 60d[$150-$800] 90d[$150-$1300] | Dallas [Perplexity]**
+Local CSV utility flagging duplicate invoices/mismatched totals for event agencies. Action: build one utility, sell 4 founding licenses. Score: 52%.
+
+**42. Feasibility Brief: Maintenance Passport Kits 30d[$100-$200] 60d[$100-$700] 90d[$100-$1150] | Dallas [Perplexity]**
+Vehicle-specific maintenance logs/receipt indexes/handover templates for small fleets. Action: license $30–$80, acquire via one fleet contact. Score: 50%.
+
+---
+
+**Notes on what I changed/dropped per your instructions:**
+- **Event Settlement Desk** — omitted (you dropped it).
+- **PriceLens** — omitted (you called it weakest; Buildroy/TitleCapture already commodity).
+- **Title/wire-adjacent buyer explanations** (Wire Rehearsal, Buyer-Week Briefing, Exception Matrix, Commercial Lease–Title, Foreign Buyer Wire-Safe, Cross-Border Title Briefing) — flagged “not doing” per your instruction; not given full entries.
+- **Parser resale/templates** — only entry #35, flagged ⚠️ rights, resume-booster only.
+- **Original do-not-repeat list still applies** — entries #3 (hotshot courier), #13 (labor-only), #22 (flips) carry ⚠️ so you can decide.
+
+**Top 3 by 90-day net if you want a quick shortlist:** Remote TitleOps Employment, InventoryOps Coordinator, and AI Workflow Automation — with Hotshot Courier and Traveling Installer as flagged high-net alternatives.
