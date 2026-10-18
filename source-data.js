@@ -1,0 +1,3 @@
+const SOURCE_DATA = {
+  1: `Perplexity — Remote TitleOps Employee | Idea: Take your 12 years title/escrow ops, onboarding, vendor relations, auditing, compliance and work as W2/1099 for an existing title company remotely. Only allowed use of title/escrow experience — not starting your own escrow shop. You do not handle client money as a business, the employer does. | Who pays and why: Copart Title Express Remote Processor Dallas, First American Sr Title Operations & Examination Remote, Independence Title Austin remote. | Startup cost: $0/week. | Days to first dollar: 14–30. | Weekly income by month 3: $1,000–1,500/week. | Biggest risk: real estate volume layoffs; must stay W2.`
+};

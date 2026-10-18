@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>Kenneth's Side-Hustle Idea Review</title>
+<style>
+  :root{
+    --accent:#0f6e5c; --accent-ink:#0a4a3d; --bg:#f7f5f0; --card-bg:#ffffff;
+    --ink:#20241f; --muted:#6b6f68; --border:#e1ddd2; --star:#e0a800;
+    --danger:#b3401f; --radius:14px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#15181a; --card-bg:#1f2326; --ink:#eef0ee; --muted:#9aa29c; --border:#30343a; }
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg); color:var(--ink); padding-block-end:6rem;
+  }
+  header.top{
+    position:sticky; inset-block-start:0; z-index:20; background:var(--accent); color:#fff;
+    padding:0.85rem 1rem; box-shadow:0 2px 8px rgba(0,0,0,.15);
+  }
+  header.top h1{margin:0; font-size:1.05rem; font-weight:700;}
+  header.top p{margin:0.15rem 0 0; font-size:0.78rem; opacity:.9;}
+  .name-row{display:flex; gap:.5rem; margin-block-start:.6rem; align-items:center; flex-wrap:wrap;}
+  .name-row input{
+    flex:1; min-width:160px; padding:.5rem .7rem; border-radius:10px; border:none; font-size:.9rem;
+  }
+  .view-toggle{display:flex; gap:.4rem; margin-block-start:.6rem;}
+  .view-toggle button{
+    flex:1; padding:.5rem .4rem; border-radius:10px; border:1px solid rgba(255,255,255,.5);
+    background:rgba(255,255,255,.12); color:#fff; font-weight:600; font-size:.85rem; cursor:pointer;
+  }
+  .view-toggle button.active{background:#fff; color:var(--accent-ink);}
+  main{max-width:900px; margin:0 auto; padding:1rem;}
+  .filters{display:flex; gap:.4rem; flex-wrap:wrap; margin-block-end:.9rem;}
+  .chip{
+    padding:.4rem .75rem; border-radius:999px; border:1px solid var(--border); background:var(--card-bg);
+    color:var(--ink); font-size:.8rem; cursor:pointer; white-space:nowrap;
+  }
+  .chip.active{background:var(--accent); color:#fff; border-color:var(--accent);}
+  .search-row{margin-block-end:.9rem;}
+  .search-row input{
+    width:100%; padding:.6rem .8rem; border-radius:10px; border:1px solid var(--border);
+    background:var(--card-bg); color:var(--ink); font-size:.9rem;
+  }
+  .category-heading{
+    font-size:.95rem; font-weight:700; margin:1.3rem 0 .5rem; color:var(--accent-ink);
+    display:flex; align-items:center; gap:.4rem;
+  }
+  .grid{display:grid; grid-template-columns:1fr; gap:.75rem;}
+  @media(min-width:640px){ .grid{grid-template-columns:1fr 1fr;} }
+  .card{
+    background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius);
+    padding:.9rem 1rem; display:flex; flex-direction:column; gap:.45rem;
+  }
+  .card .top-line{display:flex; justify-content:space-between; align-items:flex-start; gap:.5rem;}
+  .card h3{margin:0; font-size:1rem; line-height:1.25;}
+  .card .num{color:var(--muted); font-weight:500; font-size:.82rem;}
+  .score-badge{
+    background:var(--accent); color:#fff; border-radius:999px; padding:.15rem .55rem;
+    font-size:.72rem; font-weight:700; white-space:nowrap;
+  }
+  .flag-badge{
+    background:#fff3e0; color:var(--danger); border:1px solid #f0c49b; border-radius:8px;
+    padding:.25rem .5rem; font-size:.72rem; font-weight:600;
+  }
+  @media (prefers-color-scheme: dark){ .flag-badge{background:#3a2a1a;} }
+  .summary{font-size:.86rem; color:var(--ink); margin:0;}
+  .action{font-size:.78rem; color:var(--muted); margin:0;}
+  .costs{display:flex; gap:.5rem; flex-wrap:wrap; font-size:.72rem; color:var(--muted);}
+  .costs span strong{color:var(--ink);}
+  .stars{display:flex; gap:.15rem; font-size:1.3rem; cursor:pointer; line-height:1;}
+  .stars .star{color:var(--border); transition:color .1s;}
+  .stars .star.filled{color:var(--star);}
+  .note-toggle{
+    background:none; border:none; color:var(--accent-ink); font-size:.78rem; cursor:pointer;
+    padding:0; text-align:start; text-decoration:underline;
+  }
+  textarea.note{
+    width:100%; border:1px solid var(--border); border-radius:8px; padding:.5rem; font-size:.82rem;
+    background:var(--bg); color:var(--ink); resize:vertical; min-height:2.4rem;
+  }
+  .card-actions{display:flex; gap:.6rem; flex-wrap:wrap; align-items:center; margin-block-start:.2rem;}
+  .verify-link{
+    font-size:.76rem; color:var(--accent-ink); text-decoration:none; border:1px solid var(--border);
+    border-radius:8px; padding:.25rem .5rem;
+  }
+  .sources{font-size:.68rem; color:var(--muted); font-style:italic;}
+
+  /* Swipe view */
+  #swipeView{display:none;}
+  .swipe-wrap{display:flex; flex-direction:column; align-items:center; gap:.9rem;}
+  .swipe-progress{font-size:.8rem; color:var(--muted);}
+  .swipe-card{
+    width:100%; max-width:460px; background:var(--card-bg); border:1px solid var(--border);
+    border-radius:18px; padding:1.3rem; display:flex; flex-direction:column; gap:.6rem;
+    min-height:320px;
+  }
+  .swipe-card h2{margin:0; font-size:1.2rem;}
+  .swipe-nav{display:flex; gap:.6rem; width:100%; max-width:460px;}
+  .swipe-nav button{
+    flex:1; padding:.7rem; border-radius:12px; border:none; background:var(--accent); color:#fff;
+    font-weight:700; font-size:.95rem; cursor:pointer;
+  }
+  .swipe-nav button.secondary{background:var(--card-bg); color:var(--ink); border:1px solid var(--border);}
+  .cat-pill{
+    align-self:flex-start; font-size:.72rem; background:var(--bg); border:1px solid var(--border);
+    padding:.2rem .55rem; border-radius:999px; color:var(--muted);
+  }
+
+  footer.bar{
+    position:fixed; inset-block-end:0; inset-inline:0; z-index:20; background:var(--card-bg);
+    border-block-start:1px solid var(--border); padding:.6rem .9rem; display:flex; gap:.6rem;
+    align-items:center; justify-content:center; flex-wrap:wrap;
+  }
+  footer.bar button{
+    padding:.55rem .9rem; border-radius:10px; border:1px solid var(--border); background:var(--bg);
+    color:var(--ink); font-size:.82rem; font-weight:600; cursor:pointer;
+  }
+  footer.bar button.primary{background:var(--accent); color:#fff; border-color:var(--accent);}
+  #toast{
+    position:fixed; inset-block-start:5.6rem; inset-inline:0; display:flex; justify-content:center;
+    pointer-events:none; z-index:50;
+  }
+  #toast span{
+    background:var(--ink); color:var(--bg); padding:.45rem .9rem; border-radius:999px; font-size:.8rem;
+    opacity:0; transition:opacity .25s;
+  }
+  #toast span.show{opacity:1;}
+  .empty-msg{color:var(--muted); font-size:.85rem; text-align:center; padding:1.5rem 0;}
+  .source-toggle{
+    background:none; border:none; color:var(--accent-ink); font-size:.78rem;
+    cursor:pointer; padding:0; text-align:start; text-decoration:underline;
+  }
+  .source-panel{
+    display:none; margin-block-start:.5rem; padding:.7rem; border-radius:8px;
+    background:var(--bg); border:1px solid var(--border); font-size:.74rem;
+    line-height:1.5; white-space:pre-wrap; word-break:break-word;
+    max-height:360px; overflow-y:auto; color:var(--muted);
+  }
+  .source-panel.open{display:block;}
+</style>
+<script src="source-data.js"></script>
+</head>
+<body>
+
+<header class="top">
+  <h1>Kenneth's Side-Hustle Idea Review</h1>
+  <p>Browse or swipe through the ideas, rate what catches your eye, and leave a note if you like.</p>
+  <div class="name-row">
+    <input type="text" id="nameInput" placeholder="Your name (optional)">
+  </div>
+  <div class="view-toggle">
+    <button id="btnBrowse" class="active">📋 Browse</button>
+    <button id="btnSwipe">👉 Swipe</button>
+  </div>
+</header>
+
+<main>
+  <div id="browseView">
+    <div class="search-row">
+      <input type="text" id="searchInput" placeholder="Search ideas...">
+    </div>
+    <div class="filters" id="categoryFilters"></div>
+    <div id="browseList"></div>
+  </div>
+
+  <div id="swipeView">
+    <div class="swipe-wrap">
+      <div class="swipe-progress" id="swipeProgress"></div>
+      <div class="swipe-card" id="swipeCard"></div>
+      <div class="swipe-nav">
+        <button class="secondary" id="swipePrev">⟵ Back</button>
+        <button id="swipeNext">Next ⟶</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div id="toast"><span id="toastMsg"></span></div>
+
+<footer class="bar">
+  <button id="btnCopy">📋 Copy my picks</button>
+  <button class="primary" id="btnSync">📤 Sync my votes</button>
+</footer>
+
+<script>
+const DATA = {"cats": {"titleops": {"label": "Lean on Title/Escrow Background", "emoji": "\ud83c\udfdb\ufe0f"}, "logistics": {"label": "Logistics & Warehouse", "emoji": "\ud83d\udce6"}, "automation": {"label": "Automation, Dashboards & Micro-Tools", "emoji": "\ud83d\udcbb"}, "inspection": {"label": "On-Site Inspection & Documentation", "emoji": "\ud83d\udd0d"}, "sports": {"label": "Sports & Officiating", "emoji": "\ud83c\udfc0"}, "media": {"label": "Media & Web", "emoji": "\ud83c\udfac"}, "other": {"label": "Everything Else", "emoji": "\ud83d\udcce"}}, "ideas": [{"num": 1, "name": "Remote TitleOps Employee", "category": "titleops", "cost30": "$0\u2013$3,000", "cost60": "$0\u2013$8,000", "cost90": "$0\u2013$16,250", "score": 88, "flag": null, "summary": "Work remote for an existing title company using your 12 years of escrow experience \u2014 no startup cost, steady paycheck.", "action": "Update resume/LinkedIn, apply to Copart/First American/Independence remote listings, interview, wait for first payroll cycle.", "sources": "Perplexity, Gemini"}, {"num": 2, "name": "InventoryOps Coordinator", "category": "logistics", "cost30": "$150\u2013$3,500", "cost60": "$300\u2013$8,000", "cost90": "$450\u2013$12,500", "score": 84, "flag": null, "summary": "Salaried logistics/inventory coordination role, e.g. a Denton infrastructure company ($65\u201370k).", "action": "Apply, emphasize accuracy/exception resolution/reporting \u2014 don't claim warehouse experience.", "sources": "Grok"}, {"num": 3, "name": "Car Hotshot Courier", "category": "logistics", "cost30": "$300\u2013$4,000", "cost60": "$600\u2013$8,000", "cost90": "$900\u2013$12,250", "score": 78, "flag": "DO-NOT-REPEAT (courier)", "summary": "Same-day deliveries in your own car for labs, dealerships, and legal documents.", "action": "Apply to Prestige Couriers DFW (own vehicle, $750\u20131,500/wk), take evening/weekend shifts, track miles.", "sources": "Perplexity"}, {"num": 4, "name": "Traveling Installer", "category": "logistics", "cost30": "$300\u2013$3,500", "cost60": "$500\u2013$8,000", "cost90": "$700\u2013$12,000", "score": 82, "flag": null, "summary": "Employer-funded traveling low-voltage/installation work with confirmed overtime and prepaid travel.", "action": "Contact recruiters, confirm overtime + prepaid hotel/airfare in writing, deploy.", "sources": "Grok"}, {"num": 5, "name": "DistributionShift Lead", "category": "logistics", "cost30": "$200\u2013$3,500", "cost60": "$350\u2013$7,500", "cost90": "$500\u2013$11,500", "score": 80, "flag": null, "summary": "Warehouse supervisor/fulfillment lead role (e.g. Lewisville $57\u201370k; Fort Worth $26\u201329/hr).", "action": "Apply to upper salary range or hourly roles with confirmed overtime.", "sources": "Grok"}, {"num": 6, "name": "AI Workflow Automation", "category": "automation", "cost30": "$200\u2013$2,500", "cost60": "$400\u2013$7,500", "cost90": "$600\u2013$11,500", "score": 84, "flag": null, "summary": "Build small automation tools (n8n/Make/Zapier) for small businesses, then sell monthly retainers.", "action": "Build two demos, pitch $500\u2013$1,500 pilots to warm contacts, convert to $500\u2013$1,500/mo retainers.", "sources": "Perplexity, Gemini, Grok, Meta"}, {"num": 7, "name": "Mobile Pre-Purchase Inspection", "category": "inspection", "cost30": "$600\u2013$2,500", "cost60": "$900\u2013$7,000", "cost90": "$1,200\u2013$11,250", "score": 80, "flag": null, "summary": "Drive to sellers and do a 90-minute inspection plus a photo/video report for used-car buyers.", "action": "Buy an OBD2 + paint meter, set up a Google Business Profile, list on marketplaces.", "sources": "Perplexity, Gemini"}, {"num": 8, "name": "Looker/SQL Dashboards", "category": "automation", "cost30": "$100\u2013$2,500", "cost60": "$150\u2013$6,000", "cost90": "$200\u2013$8,750", "score": 82, "flag": null, "summary": "Fix or rebuild broken dashboards and data reports for staffing firms, dealers, and real estate teams.", "action": "Build two demo dashboards, pitch a paid teardown to warm contacts.", "sources": "Perplexity, Gemini, Grok"}, {"num": 9, "name": "Contract Week Python/C#", "category": "automation", "cost30": "$200\u2013$3,000", "cost60": "$300\u2013$6,000", "cost90": "$400\u2013$8,250", "score": 78, "flag": null, "summary": "One-week, fixed-scope coding builds for a single client, remote or on-site.", "action": "Niche into Windows desktop/offline tools, bid short-scope fixes, deliver in a week, repeat.", "sources": "Grok, Gemini"}, {"num": 10, "name": "Officiating Stack + Rules Video", "category": "sports", "cost30": "$250\u2013$2,500", "cost60": "$400\u2013$5,500", "cost90": "$550\u2013$8,000", "score": 80, "flag": null, "summary": "Officiate youth/high-school/AAU games across the season, and sell a rules-training video to new refs.", "action": "Book games through chapter, publish a rules video on Gumroad.", "sources": "Perplexity, Gemini, DeepSeek"}, {"num": 11, "name": "Home Inventory", "category": "inspection", "cost30": "$200\u2013$2,000", "cost60": "$250\u2013$4,500", "cost90": "$300\u2013$6,750", "score": 82, "flag": null, "summary": "Photograph and document household items room-by-room for insurance or estate records.", "action": "Run three discounted pilots via an insurance agent and an estate planner, ask for referrals.", "sources": "Claude"}, {"num": 12, "name": "PI Records Packet", "category": "titleops", "cost30": "$200\u2013$2,000", "cost60": "$300\u2013$4,500", "cost90": "$400\u2013$6,500", "score": 68, "flag": "Texas Ch.1702 license note", "summary": "Pull deeds, liens, plats and court records for Dallas private-investigator firms.", "action": "Confirm Texas Ch.1702 licensing boundary first, run two paid packets.", "sources": "Meta, Grok"}, {"num": 13, "name": "TaskRabbit Labor-Only", "category": "logistics", "cost30": "$200\u2013$2,000", "cost60": "$350\u2013$4,500", "cost90": "$500\u2013$6,500", "score": 70, "flag": "DO-NOT-REPEAT (labor-only moving)", "summary": "Load/unload, U-Box, and furniture assembly jobs as a Tasker.", "action": "Set a $40\u2013$55/hr rate, take weekend jobs, track body/heat limits.", "sources": "Perplexity"}, {"num": 14, "name": "Desktop Rescue Tools", "category": "automation", "cost30": "$100\u2013$2,000", "cost60": "$150\u2013$4,500", "cost90": "$200\u2013$6,000", "score": 76, "flag": null, "summary": "Small custom software tools for file, media, and catalog organizing tasks (no personal data).", "action": "Build two synthetic demos, quote fixed builds $650\u2013$950, deliver with a handoff video.", "sources": "Grok, Gemini, Meta"}, {"num": 15, "name": "Automation Install", "category": "automation", "cost30": "$200\u2013$2,000", "cost60": "$250\u2013$4,500", "cost90": "$300\u2013$6,000", "score": 74, "flag": null, "summary": "Install one automation workflow for a small business at a fixed price, not billed hourly.", "action": "Sell one $1,500\u2013$2,000 build, deliver on their machine, convert to a retainer.", "sources": "Grok"}, {"num": 16, "name": "Support QA / Clarity Audit", "category": "automation", "cost30": "$75\u2013$1,500", "cost60": "$100\u2013$4,000", "cost90": "$125\u2013$5,750", "score": 62, "flag": null, "summary": "Score sampled customer-service tickets/chats and deliver a one-page coaching report.", "action": "Offer a free 25-ticket sample to one team, convert to a paid audit then a monthly retainer.", "sources": "Claude, Meta, Perplexity"}, {"num": 17, "name": "Website Finish Line", "category": "media", "cost30": "$150\u2013$2,000", "cost60": "$200\u2013$4,000", "cost90": "$250\u2013$5,500", "score": 74, "flag": null, "summary": "Repair/finish existing informational websites \u2014 mobile, speed, navigation, public pages only.", "action": "Require sanitized staging copy, quote two scoped projects a week, exclude checkout/accounts.", "sources": "Grok"}, {"num": 18, "name": "Title Recon Sprint", "category": "titleops", "cost30": "$200\u2013$1,500", "cost60": "$250\u2013$4,000", "cost90": "$300\u2013$5,250", "score": 74, "flag": null, "summary": "Fixed-scope reconciliation project for small title agencies \u2014 outstanding checks, aged balances.", "action": "Run a paid pilot on one backlog category with one known agency.", "sources": "Claude, Meta"}, {"num": 19, "name": "Video Production", "category": "media", "cost30": "$150\u2013$1,500", "cost60": "$200\u2013$3,500", "cost90": "$250\u2013$5,000", "score": 72, "flag": null, "summary": "Short software tutorials or trade-channel editing using your own camera.", "action": "Quote a $300\u2013$500 bounded tutorial, cap revision rounds.", "sources": "Grok"}, {"num": 20, "name": "Private School Tournament Ops", "category": "sports", "cost30": "$200\u2013$1,500", "cost60": "$250\u2013$3,500", "cost90": "$300\u2013$5,000", "score": 68, "flag": null, "summary": "Scheduling, incident desk, and gym setup support for private/charter/AAU tournaments.", "action": "Pitch one league, use existing gear, run one tournament.", "sources": "Meta"}, {"num": 21, "name": "StageShift Crew", "category": "logistics", "cost30": "$200\u2013$1,500", "cost60": "$250\u2013$3,500", "cost90": "$300\u2013$5,000", "score": 70, "flag": null, "summary": "Event setup/teardown crew work as bridge income ($18\u2013$19/hr in DFW).", "action": "Apply to Dallas live-event crew listings, use between other projects.", "sources": "Grok"}, {"num": 22, "name": "Gov Surplus Flipping", "category": "other", "cost30": "-$800\u2013$400", "cost60": "$1,800\u2013$2,500", "cost90": "$3,000\u2013$7,000", "score": 60, "flag": "DO-NOT-REPEAT (estate-sale flips \u2014 different, but flagged)", "summary": "Buy small government-surplus lots (laptops, tools, trailers), clean and test at home, resell locally.", "action": "Start with one $200\u2013$300 lot, stay under 5 vehicle flips/yr, track sell-through.", "sources": "Perplexity, Gemini"}, {"num": 23, "name": "LATAM BPO Title Workflow Auditor", "category": "titleops", "cost30": "$0\u2013$1,500", "cost60": "$0\u2013$3,000", "cost90": "$0\u2013$4,000", "score": 70, "flag": null, "summary": "Audit offshore title-processing queues at US title firms using dashboard tools.", "action": "Pitch one firm, scope a fixed audit, deliver a dashboard.", "sources": "Meta"}, {"num": 24, "name": "AssemblyDay Service", "category": "logistics", "cost30": "$300\u2013$800", "cost60": "$400\u2013$2,000", "cost90": "$500\u2013$4,000", "score": 64, "flag": null, "summary": "Furniture and basic product assembly at the customer's site.", "action": "List on Airtasker/Thumbtack, flat rate per item, avoid long travel.", "sources": "Grok"}, {"num": 25, "name": "DocSift", "category": "automation", "cost30": "$100\u2013$300", "cost60": "$150\u2013$1,200", "cost90": "$200\u2013$3,000", "score": 52, "flag": null, "summary": "Auto-file and sort incoming email/fax documents with a missing-document log.", "action": "Demo on 10 messy files, sell a $600 setup + $150/mo, non-PII clients only.", "sources": "Claude"}, {"num": 26, "name": "VeriSynth AI Micro-SaaS", "category": "automation", "cost30": "-$300\u2013$0", "cost60": "$350\u2013$500", "cost90": "$400\u2013$3,000", "score": 55, "flag": null, "summary": "Package a multi-AI consensus/fact-checking tool as a subscription for newsrooms, PIs, and realtors.", "action": "Run a paid beta with warm contacts, add an SEO channel.", "sources": "Gemini"}, {"num": 27, "name": "Offshore KYC Chain Pulls", "category": "automation", "cost30": "$150\u2013$800", "cost60": "$150\u2013$2,000", "cost90": "$150\u2013$2,750", "score": 62, "flag": "GDPR/data-use check needed", "summary": "Turn US property ownership chains into clean reports for EU/UK compliance firms.", "action": "Confirm the GDPR boundary first, run two paid reports.", "sources": "Meta"}, {"num": 28, "name": "ReleaseProof Engine", "category": "automation", "cost30": "$300\u2013$500", "cost60": "$350\u2013$1,500", "cost90": "$400\u2013$2,750", "score": 58, "flag": null, "summary": "Manually test software releases for teams first, then automate the repeated checks.", "action": "Sell manual testing to three teams, automate only recurring checks.", "sources": "Grok"}, {"num": 29, "name": "Remote Escrow Talent Placement", "category": "titleops", "cost30": "$400\u2013$500", "cost60": "$450\u2013$1,500", "cost90": "$500\u2013$2,500", "score": 60, "flag": null, "summary": "Earn a placement fee connecting US-trained escrow talent with non-US title firms.", "action": "Screen candidates via title contacts, charge $500\u2013$1,000 per placement.", "sources": "DeepSeek"}, {"num": 30, "name": "StatusWindow Portal", "category": "automation", "cost30": "-$150\u2013$0", "cost60": "$200\u2013$1,000", "cost90": "$250\u2013$2,250", "score": 61, "flag": null, "summary": "A simple branded status-checklist portal for title/law/CPA clients, built from a daily CSV export.", "action": "Sell it as an add-on to an existing client after a first project together.", "sources": "Claude"}, {"num": 31, "name": "Club Pay Desk", "category": "sports", "cost30": "$80\u2013$800", "cost60": "$80\u2013$1,500", "cost90": "$80\u2013$2,000", "score": 58, "flag": "overlaps a dropped idea (Event Settlement)", "summary": "Reconcile club-sports fees, mileage, and gate totals for a weekend tournament \u2014 never holding funds.", "action": "Charge a flat fee per weekend closeout.", "sources": "Grok"}, {"num": 32, "name": "Workflow QA", "category": "automation", "cost30": "$100\u2013$800", "cost60": "$100\u2013$1,500", "cost90": "$100\u2013$2,000", "score": 66, "flag": null, "summary": "Scripted testing of document upload/permission/exception flows for property-software vendors.", "action": "Build two synthetic test scripts, pitch two pilots.", "sources": "Perplexity"}, {"num": 33, "name": "Assignor Conflict Simulator", "category": "automation", "cost30": "$100\u2013$300", "cost60": "$150\u2013$1,000", "cost90": "$200\u2013$2,000", "score": 56, "flag": null, "summary": "A training simulator for sports-official dispatch and de-escalation scenarios.", "action": "License it to one association, iterate from there.", "sources": "Meta"}, {"num": 34, "name": "Synthetic Test Packs", "category": "automation", "cost30": "$100\u2013$400", "cost60": "$100\u2013$1,200", "cost90": "$100\u2013$1,850", "score": 62, "flag": null, "summary": "License made-up practice transaction datasets and checklists to property-software vendors.", "action": "Build one pack from synthetic data, pitch two vendors.", "sources": "Claude, Meta"}, {"num": 35, "name": "Title Ops Templates/SOPs", "category": "titleops", "cost30": "$300\u2013$300", "cost60": "$300\u2013$1,000", "cost90": "$300\u2013$2,000", "score": 50, "flag": "Rights unresolved \u2014 resume-booster only", "summary": "Standard operating procedure templates for title/escrow work, built entirely from scratch.", "action": "Rebuild on synthetic/public data only \u2014 never repackage employer files.", "sources": "DeepSeek, Grok, Meta, Claude"}, {"num": 36, "name": "Probate Garage Sheet", "category": "inspection", "cost30": "$60\u2013$600", "cost60": "$60\u2013$1,200", "cost90": "$60\u2013$1,600", "score": 62, "flag": null, "summary": "A quick home-visit mechanical and lien/title condition check for probate attorneys.", "action": "Pitch two attorneys, fixed $100\u2013$150 per visit.", "sources": "Grok"}, {"num": 37, "name": "Relocation Checklist", "category": "other", "cost30": "$100\u2013$500", "cost60": "$100\u2013$1,000", "cost90": "$100\u2013$1,500", "score": 60, "flag": null, "summary": "Help relocating employees track passport validity and gather documents before an embassy visit.", "action": "Pitch one employer, keep it checklist-only.", "sources": "Grok"}, {"num": 38, "name": "Caption QC", "category": "media", "cost30": "$100\u2013$500", "cost60": "$100\u2013$1,000", "cost90": "$100\u2013$1,500", "score": 62, "flag": null, "summary": "Clean up English captions, speaker labels, and timing for TV content via industry contacts.", "action": "Run two small paid batches, cap correction time.", "sources": "Perplexity"}, {"num": 39, "name": "County Index Normalizer", "category": "automation", "cost30": "$150\u2013$200", "cost60": "$150\u2013$900", "cost90": "$150\u2013$1,400", "score": 54, "flag": null, "summary": "A tool that cleans up OCR errors in county property records for rural abstractors.", "action": "Build one county tool, license it at $50\u2013$125.", "sources": "Meta"}, {"num": 40, "name": "Esports Officiating Cert", "category": "sports", "cost30": "-$400\u2013$200", "cost60": "$450\u2013$500", "cost90": "$500\u2013$1,750", "score": 50, "flag": null, "summary": "Remote certification training for officials in emerging esports leagues.", "action": "Pilot a cohort via overseas organizers at $150\u2013$300 per cohort.", "sources": "DeepSeek"}, {"num": 41, "name": "Vendor Ledger Checker", "category": "automation", "cost30": "$150\u2013$300", "cost60": "$150\u2013$800", "cost90": "$150\u2013$1,300", "score": 52, "flag": null, "summary": "A local tool flagging duplicate invoices and mismatched totals for event agencies.", "action": "Build one utility, sell four founding licenses.", "sources": "Perplexity"}, {"num": 42, "name": "Maintenance Passport Kits", "category": "inspection", "cost30": "$100\u2013$200", "cost60": "$100\u2013$700", "cost90": "$100\u2013$1,150", "score": 50, "flag": null, "summary": "Vehicle-specific maintenance logs, receipt indexes, and handover templates for small fleets.", "action": "License at $30\u2013$80 per kit via one fleet contact.", "sources": "Perplexity"}]};
+const CATS = DATA.cats;
+const IDEAS = DATA.ideas;
+
+// ---- CONFIG: paste your Google Apps Script Web App URL here to auto-record votes to a Sheet ----
+const CONFIG = {
+  SHEET_WEBHOOK_URL: "" // e.g. "https://script.google.com/macros/s/XXXXXXXX/exec"
+};
+
+const STORAGE_KEY = "sideHustleReview_v1";
+
+function loadState(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(raw) return JSON.parse(raw);
+  }catch(e){}
+  return { name:"", ratings:{}, activeView:"browse", activeCategory:"all", searchTerm:"", swipeIndex:0 };
+}
+let state = loadState();
+
+function saveState(){
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }catch(e){}
+}
+
+function getRating(num){
+  return state.ratings[num] || { stars:0, notes:"" };
+}
+function setRating(num, patch){
+  const cur = getRating(num);
+  state.ratings[num] = Object.assign({}, cur, patch);
+  saveState();
+}
+
+function showToast(msg){
+  const t = document.getElementById("toastMsg");
+  t.textContent = msg;
+  t.classList.add("show");
+  setTimeout(()=>t.classList.remove("show"), 1800);
+}
+
+function perplexityUrl(idea){
+  const q = `Is "${idea.name}" -- ${idea.summary} -- a realistic side income opportunity in the Dallas area? What are realistic costs, risks, and legitimacy concerns?`;
+  return "https://www.perplexity.ai/search?q=" + encodeURIComponent(q);
+}
+
+// ---- Sheet sync ----
+let syncTimer = null;
+function sendRowToSheet(idea, rating){
+  if(!CONFIG.SHEET_WEBHOOK_URL) return;
+  const payload = {
+    timestamp: new Date().toISOString(),
+    name: state.name || "",
+    ideaNum: idea.num,
+    ideaName: idea.name,
+    category: CATS[idea.category].label,
+    stars: rating.stars,
+    notes: rating.notes || ""
+  };
+  fetch(CONFIG.SHEET_WEBHOOK_URL, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
+    body: JSON.stringify(payload)
+  }).catch(()=>{});
+}
+function debouncedSend(idea, rating){
+  sendRowToSheet(idea, rating);
+}
+
+function syncAllVotes(){
+  const rated = IDEAS.filter(i => (state.ratings[i.num] || {}).stars > 0);
+  if(!CONFIG.SHEET_WEBHOOK_URL){
+    showToast("No sheet connected yet -- ask Kenneth to finish setup. Your picks are saved on this device.");
+    return;
+  }
+  if(rated.length === 0){
+    showToast("Rate at least one idea first!");
+    return;
+  }
+  rated.forEach(i => sendRowToSheet(i, getRating(i.num)));
+  showToast(`Sent ${rated.length} rated idea${rated.length>1?'s':''} to Kenneth's sheet!`);
+}
+
+function buildCopyText(){
+  const rated = IDEAS.filter(i => (state.ratings[i.num] || {}).stars > 0);
+  if(rated.length === 0) return "No ideas rated yet.";
+  const who = state.name ? state.name : "Someone";
+  let out = `${who}'s picks:\n`;
+  rated.sort((a,b)=> (getRating(b.num).stars - getRating(a.num).stars));
+  rated.forEach(i=>{
+    const r = getRating(i.num);
+    out += `${i.num}. ${i.name} - ${"★".repeat(r.stars)}${"☆".repeat(5-r.stars)}`;
+    if(r.notes) out += ` (note: ${r.notes})`;
+    out += "\n";
+  });
+  return out;
+}
+
+function copyPicks(){
+  const text = buildCopyText();
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(()=>showToast("Copied! Paste it into a text to Kenneth.")).catch(()=>fallbackCopy(text));
+  }else{
+    fallbackCopy(text);
+  }
+}
+function fallbackCopy(text){
+  const ta = document.createElement("textarea");
+  ta.value = text; document.body.appendChild(ta); ta.select();
+  try{ document.execCommand("copy"); showToast("Copied! Paste it into a text to Kenneth."); }
+  catch(e){ showToast("Couldn't copy automatically -- select & copy manually."); }
+  document.body.removeChild(ta);
+}
+
+// ---- Star widget ----
+function renderStars(idea, container){
+  container.innerHTML = "";
+  const rating = getRating(idea.num);
+  for(let s=1; s<=5; s++){
+    const span = document.createElement("span");
+    span.className = "star" + (s <= rating.stars ? " filled" : "");
+    span.textContent = s <= rating.stars ? "★" : "☆";
+    span.dataset.value = s;
+    span.addEventListener("click", ()=>{
+      const r = getRating(idea.num);
+      const newVal = (r.stars === s) ? 0 : s; // click same star to clear
+      setRating(idea.num, { stars:newVal });
+      renderStars(idea, container);
+      debouncedSend(idea, getRating(idea.num));
+    });
+    container.appendChild(span);
+  }
+}
+
+// ---- Card builder (shared by browse + swipe) ----
+function buildCardBody(idea){
+  const wrap = document.createElement("div");
+
+  const topLine = document.createElement("div");
+  topLine.className = "top-line";
+  const h3 = document.createElement("h3");
+  h3.innerHTML = `<span class="num">#${idea.num}</span> ${idea.name}`;
+  topLine.appendChild(h3);
+  const badge = document.createElement("span");
+  badge.className = "score-badge";
+  badge.textContent = idea.score + "%";
+  topLine.appendChild(badge);
+  wrap.appendChild(topLine);
+
+  if(idea.flag){
+    const flagEl = document.createElement("div");
+    flagEl.className = "flag-badge";
+    flagEl.textContent = "⚠️ " + idea.flag;
+    wrap.appendChild(flagEl);
+  }
+
+  const summary = document.createElement("p");
+  summary.className = "summary";
+  summary.textContent = idea.summary;
+  wrap.appendChild(summary);
+
+  const action = document.createElement("p");
+  action.className = "action";
+  action.textContent = "Action: " + idea.action;
+  wrap.appendChild(action);
+
+  const costs = document.createElement("div");
+  costs.className = "costs";
+  costs.innerHTML = `<span>30d: <strong>${idea.cost30}</strong></span><span>60d: <strong>${idea.cost60}</strong></span><span>90d: <strong>${idea.cost90}</strong></span>`;
+  wrap.appendChild(costs);
+
+  const starsDiv = document.createElement("div");
+  starsDiv.className = "stars";
+  wrap.appendChild(starsDiv);
+  renderStars(idea, starsDiv);
+
+  const noteToggle = document.createElement("button");
+  noteToggle.className = "note-toggle";
+  const existingNote = getRating(idea.num).notes;
+  noteToggle.textContent = existingNote ? "✏️ Edit note" : "✏️ Add a note (optional)";
+  wrap.appendChild(noteToggle);
+
+  const noteArea = document.createElement("textarea");
+  noteArea.className = "note";
+  noteArea.placeholder = "Why do you like it / questions / concerns...";
+  noteArea.style.display = existingNote ? "block" : "none";
+  noteArea.value = existingNote || "";
+  noteToggle.addEventListener("click", ()=>{
+    noteArea.style.display = noteArea.style.display === "none" ? "block" : "none";
+    if(noteArea.style.display === "block") noteArea.focus();
+  });
+  noteArea.addEventListener("blur", ()=>{
+    setRating(idea.num, { notes: noteArea.value });
+    debouncedSend(idea, getRating(idea.num));
+  });
+  wrap.appendChild(noteArea);
+
+  const actionsRow = document.createElement("div");
+  actionsRow.className = "card-actions";
+  const verifyLink = document.createElement("a");
+  verifyLink.className = "verify-link";
+  verifyLink.href = perplexityUrl(idea);
+  verifyLink.target = "_blank";
+  verifyLink.rel = "noopener";
+  verifyLink.textContent = "🔎 Verify with Perplexity";
+  actionsRow.appendChild(verifyLink);
+  wrap.appendChild(actionsRow);
+
+  const sources = document.createElement("div");
+  sources.className = "sources";
+  sources.textContent = "Sourced from: " + idea.sources;
+  wrap.appendChild(sources);
+
+  const sourceToggle = document.createElement("button");
+  sourceToggle.className = "source-toggle";
+  sourceToggle.textContent = "📄 View full source data";
+  wrap.appendChild(sourceToggle);
+
+  const sourcePanel = document.createElement("div");
+  sourcePanel.className = "source-panel";
+  sourcePanel.textContent = (typeof SOURCE_DATA !== "undefined" && SOURCE_DATA[idea.num])
+    ? SOURCE_DATA[idea.num]
+    : "Source data for this idea has not been attached yet.";
+  sourceToggle.addEventListener("click", () => {
+    sourcePanel.classList.toggle("open");
+    sourceToggle.textContent = sourcePanel.classList.contains("open")
+      ? "📄 Hide source data" : "📄 View full source data";
+  });
+  wrap.appendChild(sourcePanel);
+
+  return wrap;
+}
+
+// ---- Browse view ----
+function renderCategoryFilters(){
+  const el = document.getElementById("categoryFilters");
+  el.innerHTML = "";
+  const allChip = document.createElement("button");
+  allChip.className = "chip" + (state.activeCategory === "all" ? " active" : "");
+  allChip.textContent = "All";
+  allChip.addEventListener("click", ()=>{ state.activeCategory = "all"; saveState(); renderBrowse(); renderCategoryFilters(); });
+  el.appendChild(allChip);
+  Object.keys(CATS).forEach(key=>{
+    const chip = document.createElement("button");
+    chip.className = "chip" + (state.activeCategory === key ? " active" : "");
+    chip.textContent = CATS[key].emoji + " " + CATS[key].label;
+    chip.addEventListener("click", ()=>{ state.activeCategory = key; saveState(); renderBrowse(); renderCategoryFilters(); });
+    el.appendChild(chip);
+  });
+}
+
+function renderBrowse(){
+  const list = document.getElementById("browseList");
+  list.innerHTML = "";
+  const term = (state.searchTerm || "").toLowerCase();
+  const byCategory = {};
+  Object.keys(CATS).forEach(k=>byCategory[k]=[]);
+  let anyMatch = false;
+  IDEAS.forEach(idea=>{
+    if(state.activeCategory !== "all" && idea.category !== state.activeCategory) return;
+    if(term && !(idea.name.toLowerCase().includes(term) || idea.summary.toLowerCase().includes(term))) return;
+    byCategory[idea.category].push(idea);
+    anyMatch = true;
+  });
+  if(!anyMatch){
+    const msg = document.createElement("div");
+    msg.className = "empty-msg";
+    msg.textContent = "No ideas match that search/filter.";
+    list.appendChild(msg);
+    return;
+  }
+  Object.keys(CATS).forEach(key=>{
+    const ideasInCat = byCategory[key];
+    if(ideasInCat.length === 0) return;
+    const heading = document.createElement("div");
+    heading.className = "category-heading";
+    heading.textContent = CATS[key].emoji + " " + CATS[key].label;
+    list.appendChild(heading);
+    const grid = document.createElement("div");
+    grid.className = "grid";
+    ideasInCat.forEach(idea=>{
+      const card = document.createElement("div");
+      card.className = "card";
+      card.id = "card-" + idea.num;
+      card.appendChild(buildCardBody(idea));
+      grid.appendChild(card);
+    });
+    list.appendChild(grid);
+  });
+}
+
+// ---- Swipe view ----
+function renderSwipe(){
+  const idx = Math.min(Math.max(state.swipeIndex, 0), IDEAS.length - 1);
+  state.swipeIndex = idx;
+  saveState();
+  const idea = IDEAS[idx];
+  document.getElementById("swipeProgress").textContent = `Idea ${idx+1} of ${IDEAS.length}`;
+  const cardEl = document.getElementById("swipeCard");
+  cardEl.innerHTML = "";
+  const pill = document.createElement("div");
+  pill.className = "cat-pill";
+  pill.textContent = CATS[idea.category].emoji + " " + CATS[idea.category].label;
+  cardEl.appendChild(pill);
+  cardEl.appendChild(buildCardBody(idea));
+}
+
+function goToIdeaInBrowse(num){
+  state.activeView = "browse";
+  state.activeCategory = "all";
+  saveState();
+  switchView("browse");
+  setTimeout(()=>{
+    const el = document.getElementById("card-" + num);
+    if(el) el.scrollIntoView({behavior:"smooth", block:"center"});
+  }, 60);
+}
+
+// ---- View switching ----
+function switchView(view){
+  state.activeView = view;
+  saveState();
+  document.getElementById("browseView").style.display = view === "browse" ? "block" : "none";
+  document.getElementById("swipeView").style.display = view === "swipe" ? "block" : "none";
+  document.getElementById("btnBrowse").classList.toggle("active", view === "browse");
+  document.getElementById("btnSwipe").classList.toggle("active", view === "swipe");
+  if(view === "swipe") renderSwipe();
+}
+
+// ---- Wire up events ----
+document.getElementById("nameInput").value = state.name || "";
+document.getElementById("nameInput").addEventListener("input", (e)=>{ state.name = e.target.value; saveState(); });
+
+document.getElementById("btnBrowse").addEventListener("click", ()=>switchView("browse"));
+document.getElementById("btnSwipe").addEventListener("click", ()=>switchView("swipe"));
+
+document.getElementById("searchInput").addEventListener("input", (e)=>{
+  state.searchTerm = e.target.value; saveState(); renderBrowse();
+});
+
+document.getElementById("swipePrev").addEventListener("click", ()=>{
+  state.swipeIndex = Math.max(0, state.swipeIndex - 1); renderSwipe();
+});
+document.getElementById("swipeNext").addEventListener("click", ()=>{
+  state.swipeIndex = Math.min(IDEAS.length - 1, state.swipeIndex + 1); renderSwipe();
+});
+document.addEventListener("keydown", (e)=>{
+  if(state.activeView !== "swipe") return;
+  if(e.key === "ArrowLeft") document.getElementById("swipePrev").click();
+  if(e.key === "ArrowRight") document.getElementById("swipeNext").click();
+});
+
+document.getElementById("btnCopy").addEventListener("click", copyPicks);
+document.getElementById("btnSync").addEventListener("click", syncAllVotes);
+
+// ---- Init ----
+renderCategoryFilters();
+renderBrowse();
+switchView(state.activeView || "browse");
+</script>
+</body>
+</html>
